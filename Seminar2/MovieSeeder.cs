@@ -23,12 +23,12 @@ namespace Seminar2
                 {
                     Title="Ironmen",
                     Description = "blablablab",
-                    Genre="action",
+                    Genre=Genre.thriller,
                     Duration=120,
                     YearRelease=2015,
                     Director="un nene",
                     DateAdded= new DateTime(2017, 1, 18),
-                    Rating =8,
+                    Rating =10,
                     Watched=false
 
 
@@ -37,15 +37,28 @@ namespace Seminar2
                 {
                     Title = "Batman",
                     Description = "blablablab",
-                    Genre = "action",
+                    Genre = Genre.action,
                     Duration = 120,
-                    YearRelease = 2015,
+                    YearRelease = 2016,
                     Director = "un nene",
-                    DateAdded = new DateTime(2017, 5, 18),
+                    DateAdded = new DateTime(2017, 1, 24),
                     Rating = 8,
                     Watched = false
 
-                }
+                },
+                 new Movie
+                 {
+                     Title = "Mica sirena",
+                     Description = "blablablab",
+                     Genre = Genre.comedy,
+                     Duration = 120,
+                     YearRelease = 2009,
+                     Director = "un nene",
+                     DateAdded = new DateTime(2017, 1, 30),
+                     Rating = 7,
+                     Watched = true
+
+                 }
             );
             context.SaveChanges();
         }
