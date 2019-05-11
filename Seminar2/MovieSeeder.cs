@@ -23,7 +23,7 @@ namespace Seminar2
                 {
                     Title="Ironmen",
                     Description = "blablablab",
-                    Genre=Genre.thriller,
+                    Genre=Genre.action,
                     Duration=120,
                     YearRelease=2015,
                     Director="un nene",
