@@ -21,21 +21,22 @@ namespace Seminar2
             context.Movies.AddRange(
                 new Movie
                 {
-                    Title="Ironmen",
+                    Title = "ironmen",
                     Description = "blablablab",
-                    Genre=Genre.action,
-                    Duration=120,
-                    YearRelease=2015,
-                    Director="un nene",
-                    DateAdded= new DateTime(2017, 1, 18),
-                    Rating =10,
-                    Watched=false
+                    Genre = Genre.action,
+                    Duration = 120,
+                    YearRelease = 2015,
+                    Director = "un nene",
+                    DateAdded = new DateTime(2017, 1, 18),
+                    Rating = 10,
+                    watched = Watched.yes
+
 
 
                 },
                 new Movie
                 {
-                    Title = "Batman",
+                    Title = "batman",
                     Description = "blablablab",
                     Genre = Genre.action,
                     Duration = 120,
@@ -43,12 +44,12 @@ namespace Seminar2
                     Director = "un nene",
                     DateAdded = new DateTime(2017, 1, 24),
                     Rating = 8,
-                    Watched = false
+                    watched = Watched.yes
 
                 },
                  new Movie
                  {
-                     Title = "Mica sirena",
+                     Title = "mica sirena",
                      Description = "blablablab",
                      Genre = Genre.comedy,
                      Duration = 120,
@@ -56,7 +57,7 @@ namespace Seminar2
                      Director = "un nene",
                      DateAdded = new DateTime(2017, 1, 30),
                      Rating = 7,
-                     Watched = true
+                     watched = Watched.no
 
                  }
             );

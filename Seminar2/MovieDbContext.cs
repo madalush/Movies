@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Seminar2
 {
-    public class MovieDbContext: DbContext
+    public class MovieDbContext : DbContext
     {
 
         public MovieDbContext(DbContextOptions<MovieDbContext> options) : base(options)
@@ -16,6 +16,7 @@ namespace Seminar2
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
 
 
