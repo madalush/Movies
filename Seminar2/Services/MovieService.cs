@@ -46,7 +46,7 @@ namespace Seminar2.Services
 
         public Movie Delete(int id)
         {
-            var existing = context.Movies.FirstOrDefault(movie => movie.Id == id);
+            var existing = context.Movies.Include(f => f.Comments).FirstOrDefault(movie => movie.Id == id);
             if (existing == null)
             {
                 return null;

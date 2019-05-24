@@ -23,13 +23,17 @@ namespace Seminar2.Services
         public IEnumerable<CommentListDto> GetComments(string text)
         {
             IQueryable<GetCommentsDto> result = context.Comments.Select(x => new GetCommentsDto
+
             {
+
+
+
                 Id = x.Id,
                 Text = x.Text,
                 Important = x.Important,
-                MovieId = (from Movies in context.Movies
-                           where Movies.Id == x.MovieId
-                           select Movies.Id).FirstOrDefault()
+                MovieId = (from movies in context.Movies
+                           where movies.Comments.Contains(x)
+                           select movies.Id).FirstOrDefault()
             });
             //var result = context.Comments.Select(x 
 

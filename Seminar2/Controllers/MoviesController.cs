@@ -67,7 +67,7 @@ namespace Seminar2.Controllers
         /// add movie
         /// </summary>
         /// <param name="movie">movie to add</param>
-        // GET: Movies/Create
+        
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
@@ -85,7 +85,7 @@ namespace Seminar2.Controllers
         /// <param name="id">movie id to be edited</param>
         /// <param name="movie"> movie edit</param>
         /// <returns></returns>
-        // GET: Movies/Edit/5
+        // Put: Movies/Edit/5
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("{id}")]
@@ -101,7 +101,9 @@ namespace Seminar2.Controllers
         /// </summary>
         /// <param name="id"> movie id to be deleted</param>
         /// <returns></returns>
-        // GET: Movies/Delete/5
+        // Delete: Movies/Delete/5
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Seminar2.ViewModel
 {
     public class MovieGetModel
-    {
+    {   public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         [EnumDataType(typeof(Genre))]
@@ -27,7 +27,7 @@ namespace Seminar2.ViewModel
         public static MovieGetModel FromMovie(Movie movie)
         {
             return new MovieGetModel
-            {
+            {   Id= movie.Id,
                 Title = movie.Title,
                 Description = movie.Description,
                 Genre = movie.Genre,
