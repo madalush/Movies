@@ -11,15 +11,36 @@ namespace Seminar2.Services
     public interface IMovieService
     {
         /// <summary>
-        /// 
+        /// Finds all movies 
         /// </summary>
-        /// <param name="from"></param>
+        /// <param name="from"> </param>
         /// <param name="to"></param>
-        /// <returns></returns>
+        /// <returns>a list of MovieGetModel</returns>
         IEnumerable<MovieGetModel> GetAll(DateTime? from = null, DateTime? to = null);
+        /// <summary>
+        /// Gets a movie with a given id 
+        /// </summary>
+        /// <param name="id"> the movie id we are looking for </param>
+        /// <returns> returns the movie object</returns>
         Movie GetById(int id);
+        /// <summary>
+        /// Adds a new movie to the database
+        /// </summary>
+        /// <param name="movie">The movie to be added </param>
+        /// <returns></returns>
         Movie Create(MoviePostModel movie);
+        /// <summary>
+        /// Updates a movie and if it doesn`t find the movie with the give id it insert a new movie
+        /// </summary>
+        /// <param name="id">the id of the movie to be updated</param>
+        /// <param name="movie">the new data </param>
+        /// <returns></returns>
         Movie Upsert(int id, Movie movie);
+        /// <summary>
+        /// Deletes a movie
+        /// </summary>
+        /// <param name="id">The movie id to be deleted </param>
+        /// <returns></returns>
         Movie Delete(int id);
     }
 

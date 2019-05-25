@@ -9,7 +9,7 @@ namespace Seminar2.Services
 
     public interface ICommentService
     {
-        IEnumerable<CommentListDto> GetComments(string text);
+        IEnumerable<GetCommentsDto> GetComments(string text);
     }
     public class CommentsService : ICommentService
     {
@@ -19,8 +19,12 @@ namespace Seminar2.Services
         {
             this.context = context;
         }
-
-        public IEnumerable<CommentListDto> GetComments(string text)
+        /// <summary>
+        /// Gets all comments
+        /// </summary>
+        /// <param name="text"> the text we are looking for </param>
+        /// <returns></returns>
+        public IEnumerable<GetCommentsDto> GetComments(string text)
         {
             IQueryable<GetCommentsDto> result = context.Comments.Select(x => new GetCommentsDto
 
@@ -35,17 +39,14 @@ namespace Seminar2.Services
                            where movies.Comments.Contains(x)
                            select movies.Id).FirstOrDefault()
             });
-            //var result = context.Comments.Select(x 
+
 
             if (text != null)
             {
                 result = result.Where(comment => comment.Text.Contains(text));
             }
 
-            yield return new CommentListDto
-            {
-                CommentsList = result
-            };
+            return result;
         }
 
     }

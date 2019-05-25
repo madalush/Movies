@@ -18,17 +18,6 @@ namespace Seminar2.ViewModel
 
         public int MovieId { get; set; }
 
-        //public static GetCommentsDto dtofrommodel(Comment comment)
-        //{
-        //    return new GetCommentsDto
-        //    {
-        //        Id = comment.Id,
-        //        Text = comment.Text,
-        //        Important = comment.Important,
-        //        MovieId = (from movies in context.movies
-        //                   where movies.id == x.movieid
-        //                   select movies.id).firstordefault()
-        //    };
-        //}
+
     }
 }

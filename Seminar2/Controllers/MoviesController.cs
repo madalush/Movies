@@ -1,10 +1,6 @@
 ﻿
-using System.Web.Http;
 using System.Collections.Generic;
-using System.Linq;
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Seminar2.Model;
 using System;
 using Seminar2.Services;
@@ -67,16 +63,13 @@ namespace Seminar2.Controllers
         /// add movie
         /// </summary>
         /// <param name="movie">movie to add</param>
-        
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public void Post([FromBody] MoviePostModel movie)
         {
-            //if (!ModelState.IsValid)
-            //{
 
-            //}
             service.Create(movie);
         }
         /// <summary>
@@ -116,11 +109,5 @@ namespace Seminar2.Controllers
             return Ok();
         }
 
-
-
-        //private bool MovieExists(int id)
-        //{
-        //    return _context.Movies.Any(e => e.Id == id);
-        //}
     }
 }
