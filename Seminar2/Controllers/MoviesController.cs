@@ -6,6 +6,7 @@ using System;
 using Seminar2.Services;
 using Seminar2.ViewModel;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Seminar2.Controllers
 {
@@ -28,9 +29,10 @@ namespace Seminar2.Controllers
         /// <param name="to">optional , filter, date to</param>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<MovieGetModel> Get([FromQuery]DateTime? from, [FromQuery]DateTime? to)
+        public PaginatedList<MovieGetModel> Get([FromQuery]DateTime? from, [FromQuery]DateTime? to, [FromQuery]int page = 1)
         {
-            return service.GetAll(from, to);
+            page = Math.Max(page, 1);
+            return service.GetAll(page,from, to);
 
         }
 
@@ -66,12 +68,14 @@ namespace Seminar2.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
         [HttpPost]
         public void Post([FromBody] MoviePostModel movie)
         {
 
             service.Create(movie);
         }
+
         /// <summary>
         /// edit movie
         /// </summary>
@@ -81,6 +85,7 @@ namespace Seminar2.Controllers
         // Put: Movies/Edit/5
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Movie movie)
         {
@@ -97,6 +102,7 @@ namespace Seminar2.Controllers
         // Delete: Movies/Delete/5
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

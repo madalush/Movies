@@ -16,7 +16,7 @@ namespace Seminar2.Services
         /// <param name="from"> </param>
         /// <param name="to"></param>
         /// <returns>a list of MovieGetModel</returns>
-        IEnumerable<MovieGetModel> GetAll(DateTime? from = null, DateTime? to = null);
+        PaginatedList<MovieGetModel> GetAll(int page,DateTime? from = null, DateTime? to = null);
         /// <summary>
         /// Gets a movie with a given id 
         /// </summary>
@@ -78,15 +78,15 @@ namespace Seminar2.Services
             return existing;
         }
 
-        public IEnumerable<MovieGetModel> GetAll(DateTime? from = null, DateTime? to = null)
+        public PaginatedList<MovieGetModel> GetAll(int page,DateTime? from = null, DateTime? to = null)
         {
             IQueryable<Movie> result = context
-                .Movies
-                .Include(f => f.Comments);
-            if (from == null && to == null)
-            {
-                return result.Select(f => MovieGetModel.FromMovie(f));
-            }
+                  .Movies
+                  .OrderBy(m => m.Id)
+                  .Include(m => m.Comments);
+            PaginatedList<MovieGetModel> paginatedResult = new PaginatedList<MovieGetModel>();
+            paginatedResult.CurrentPage = page;
+
             if (from != null)
             {
                 result = result.Where(f => f.DateAdded >= from);
@@ -95,8 +95,32 @@ namespace Seminar2.Services
             {
                 result = result.Where(f => f.DateAdded <= to);
             }
-            result = result.OrderBy(x => x.YearRelease);
-            return result.Select(f => MovieGetModel.FromMovie(f));
+            paginatedResult.NumberOfPages = (result.Count() - 1) / PaginatedList<MovieGetModel>.EntriesPerPage + 1;
+            result = result
+                .Skip((page - 1) * PaginatedList<MovieGetModel>.EntriesPerPage)
+                .Take(PaginatedList<MovieGetModel>.EntriesPerPage);
+            paginatedResult.Entries = result.Select(f => MovieGetModel.FromMovie(f)).ToList();
+
+            return paginatedResult;
+
+
+            //IQueryable<Movie> result = context
+            //    .Movies
+            //    .Include(f => f.Comments);
+            //if (from == null && to == null)
+            //{
+            //    return result.Select(f => MovieGetModel.FromMovie(f));
+            //}
+            //if (from != null)
+            //{
+            //    result = result.Where(f => f.DateAdded >= from);
+            //}
+            //if (to != null)
+            //{
+            //    result = result.Where(f => f.DateAdded <= to);
+            //}
+            //result = result.OrderBy(x => x.YearRelease);
+            //return result.Select(f => MovieGetModel.FromMovie(f));
         }
 
         public Movie GetById(int id)
